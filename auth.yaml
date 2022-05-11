@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: t7d
+  name: t7d-auth
+  labels:
+    app: t7d-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: t7d-auth
+  template:
+    metadata:
+      labels:
+        app:  t7d-auth
+    spec:
+      imagePullSecrets:
+        - name: nexus-keys
+      containers:
+        - name: t7d-auth
+          image: docker.galactechstudio.com/auth:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: t7d
+  name: t7d-auth
+spec:
+  selector:
+    app: t7d-auth
+  ports:
+    - protocol: TCP
+      port: 30001
+      targetPort: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: t7d
+  name: t7d-auth
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  tls:
+  - hosts:
+    - auth.galactechstudio.com
+    secretName: tls-t7d-auth
+  rules:
+  - host: auth.galactechstudio.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: t7d-auth
+            port:
+              number: 30001

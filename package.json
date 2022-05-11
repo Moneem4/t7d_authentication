@@ -1,0 +1,53 @@
+{
+  "name": "T7D",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "sonar": "sonar-scanner -D project.settings=./auth.properties",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GalactechTunisie/T7D.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GalactechTunisie/T7D/issues"
+  },
+  "homepage": "https://github.com/GalactechTunisie/T7D#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  },
+  "dependencies": {
+    "@elastic/ecs-morgan-format": "^1.1.0",
+    "@sendgrid/mail": "^7.6.0",
+    "amqplib": "^0.8.0",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.2",
+    "geoip-lite": "^1.4.2",
+    "ip-regex": "^4.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.12",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.1.30",
+    "passport": "^0.4.1",
+    "passport-discord": "^0.1.4",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "passport-steam": "^1.0.17",
+    "simple-logstash-logger": "^0.5.0",
+    "twilio": "^3.71.1",
+    "winston": "^3.3.3"
+  }
+}
